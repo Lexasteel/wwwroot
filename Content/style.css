@@ -1,0 +1,48 @@
+﻿* {
+    margin: 0;
+}
+html, body {
+    font-size: 1em;
+    height: 100%;
+}
+
+html, body {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: none repeat scroll 0 0 #FDFEFE;
+    color: black;
+    font: 85%/130% arial,helvetica,sans-serif;
+    min-width: 970px;
+    width: 100%;
+}
+a {
+    color: #0099CC;
+    text-decoration: none;
+}
+a:hover {
+    color: #00CCFF;
+}
+a img {
+    border: medium none;
+}
+h1 {
+    font-size: 1.6em;
+    height: 20px;
+    padding-top: 0;
+}
+h2 {
+    font-size: 1.2em;
+    height: 20px;
+    margin-bottom: 1em;
+    padding-top: 0;
+}
+p {
+    margin-bottom: 0.25em;
+    margin-top: 0.25em;
+}
+fieldset {
+    width: 30em;
+}

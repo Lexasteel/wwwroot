@@ -1,0 +1,93 @@
+<%@ Master Language="C#" Inherits="System.Web.Mvc.ViewMasterPage" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+	<title>
+		<asp:ContentPlaceHolder ID="TitleContent" runat="server" />
+	</title>
+	<!-- stylesheets -->
+	<link href="<%= Url.Content("~/Content/jquery-ui.css")%>" rel="stylesheet" type="text/css" />
+	<link href="<%= Url.Content("~/Content/superfish.css")%>" rel="stylesheet" type="text/css" />
+	<link href="<%= Url.Content("~/Content/inside_style.css")%>" rel="stylesheet" type="text/css" />
+	<link href="<%= Url.Content("~/Content/filemanager.css")%>" rel="stylesheet" type="text/css" />
+	<link href="<%= Url.Content("~/Content/layout-default-latest.css")%>" rel="stylesheet"
+		type="text/css" />
+	<!-- jQuery & jQuery UI & Superfish plugin -->
+
+	<script src="<%= Url.Content("~/Scripts/jquery.min.js")%>" type="text/javascript"></script>
+	<script src="<%= Url.Content("~/Scripts/jquery.cookie.js")%>" type="text/javascript"></script>
+	<script src="<%= Url.Content("~/Scripts/jquery-ui.min.js")%>" type="text/javascript"></script>
+	<script src="<%= Url.Content("~/Scripts/jquery.layout.min.js")%>" type="text/javascript"></script>
+	<script src="<%= Url.Content("~/Scripts/superfish.js")%>" type="text/javascript"></script>
+
+	<!-- Microsoft Ajax -->
+
+	<script src="<%= Url.Content("~/Scripts/MicrosoftAjax.js") %>" type="text/javascript"></script>
+
+	<script src="<%= Url.Content("~/Scripts/MicrosoftMvcAjax.js") %>" type="text/javascript"></script>
+
+	<!-- Sliding effect -->
+	<!-- <script src="<%= Url.Content("~/Scripts/slide.js")%>" type="text/javascript"></script> -->
+	<!-- Initialize main menu (Superfish) -->
+	<!-- Initialize buttons (jQuery UI) -->
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+			$(".button").button();
+			$('ul.sf-menu').superfish();
+			$("#wrapper").layout({
+				south__resizable: false,
+				south__closable: false,
+				north__resizable: false,
+				north__closable: false,
+				south__spacing_open: 0,
+				north__spacing_open: 0
+			});
+	});
+
+	</script>
+
+	<asp:ContentPlaceHolder ID="HeadContent" runat="server">
+	</asp:ContentPlaceHolder>
+</head>
+<body>
+	<div id="wrapper">
+		
+		<div id="full_header" class="ui-layout-north">
+			<div id="top-menu">
+				<% Html.RenderPartial("LogOnUserControl"); %>
+				<ul class="sf-menu">
+					<% Html.RenderPartial("NavigationUserControl"); %>
+				</ul>
+			</div>
+			<!-- 
+			<div id="header" style="display: none;">
+							<div id="quick-search">
+								<a href="#" id="header_hide">Скрыть</a>
+							</div>
+							<h1>
+								ИИС Эргомера</h1>
+						</div> -->
+			
+		</div>
+		
+		<div id="main" class="ui-layout-center">
+			<asp:ContentPlaceHolder ID="MainContent" runat="server" />
+		</div>
+		
+		<div id="footer" class="ui-layout-south">
+			&copy; 2011, <a href="http://www.ergomera.dp.ua">ИИС Эргомера</a>, версия
+			<%= Ergomera.Webserver.MvcApplication.AssemblyName.Version %>. Все права защищены.
+		<%if (DateTime.Now.Month == 11 && DateTime.Now.Day ==7 )
+		    {%>
+                <div>Да здгавствует День Великой Октябрьской социалистической революции!
+                    </div>
+              <%      }
+        %>
+        </div>
+	</div>
+</body>
+</html>

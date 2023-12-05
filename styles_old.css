@@ -1,0 +1,140 @@
+			.title
+            {
+                position: absolute;
+                /*position: relative;*/
+                top: 0px;
+                left: 0px;
+                background: #99F;
+                width: 100%;
+                height: 11%; /* Высота блока */                   
+                background: url(images/title.svg) 100% 100% no-repeat; /* Добавляем фон */
+                background-size: cover; /* Масштабируем фон */
+            }
+            .panel
+            {
+                position: absolute;
+                top: 11%;
+                left: 0px;
+                background: #99F;
+                width: 100%;
+                height: 5%; /* Высота блока */                   
+                background: url(images/panel.svg); /* Добавляем фон */
+                background-size: contain;                
+            }
+            .background
+            {
+                position: absolute;
+                top: 16%;
+                left: 0px;                
+                width: 100%;
+                height: 84%; /* Высота блока */                   
+                background: url(images/background.png) 30% 30%; /* Добавляем фон */
+                background-size: cover; /* Масштабируем фон */
+            }
+            .filemanager
+            {
+                position: absolute;
+                top: 1%;
+                left: 1%;            
+                width: 21%;
+                height: 95%; 
+                /*border: 3px solid #0092CE;  /*Параметры границы */
+                border: none;
+                background: #FFF;
+            }
+            .content
+            {
+                position: absolute;
+                top: 1%;
+                left: 23%;         
+                width: 76%;
+                height: 95%; 
+                /*border: 3px solid #0092CE; /* Параметры границы */
+                border: none;
+                background: #FFF;
+            }
+            .showhide
+            {
+                position: absolute;
+                top: 1%;
+                left: 22%;         
+                width: 1%;
+                height: 95%; 
+                border: none;
+                background: none;
+            }			
+			.horiz_hide_button
+            {
+                position: absolute;   				
+				left: 46%;
+                top: 2px;
+				background: #FFF;
+                width: 8%;
+                height: 20px; /* Высота блока */                   
+                background: url(images/horiz.png) 100% 100% no-repeat; /* Добавляем фон */
+                background-size: cover; /* Масштабируем фон */
+            }
+			
+            .user
+           {
+                position: absolute;
+                right: 15px;
+                top: 5px;
+           }           
+           .menu 
+           {
+                position: absolute;
+                left: 15px;
+                top: 5px;
+           }          
+           .menu_link
+           {           
+                font: 110% fantasy;
+                color: #FFF;
+           }		   
+			.dir_link
+           {           
+                font: 130% fantasy;
+                color: #0092CE;
+           }
+		   .menu_text
+           {           
+                font: 110% sans-serif;
+                color: #000;
+           }
+           .title_text
+           {           
+                font: 90% serif;
+                color: #FFF;
+           }
+ 
+            .control_button
+            {                
+                background: none;
+                padding:0;
+                margin:0;
+                width:100%;
+                height:100%;     				
+                overflow:visible;					
+                text-align:center;	
+                white-space:nowrap;	    
+				font: 110% sans-serif;				
+			}
+			
+			.my_button
+            {                
+                background: #FFF;
+				/*border: 3px solid #0092CE; /* Параметры границы */
+				border: none;
+                padding:0;
+                margin:0;
+                width: 135px;
+                height:40px;     				
+                overflow:visible;					
+                text-align:center;	
+                white-space:nowrap;	    
+				font: 110% sans-serif;				
+				background: url(images/button_blue.png)/* 100% 100%*/ no-repeat; /* Добавляем фон */
+                background-size: contain; /* Масштабируем фон */ 	
+			}
+			

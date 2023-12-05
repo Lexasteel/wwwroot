@@ -1,0 +1,9 @@
+#php_flag default_charset windows-1251 
+#AddType "text/html; charset=win-1251" .html .htm .shtml
+
+#Options +FollowSymLinks
+#RewriteEngine On
+#RewriteBase /
+
+#RewriteRule ^pupkin$ preset.php
+#RedirectMatch ^/pupkin$ /preset.php

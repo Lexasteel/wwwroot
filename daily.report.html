@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title></title>
+  </head>
+
+  <body>
+    <script>
+      var search = window.location.search.replace('?', '&')
+      var decode = decodeURI(search)
+      console.log(search)
+      console.log(decode)
+      var pathname = window.location.pathname
+      var origin = window.location.origin
+      var url = new URL('/report.php?file=' + pathname + decode, origin)
+      //url.searchParams.set('file', pathname + decode)
+      //console.log(url)
+      window.location.href = url
+    </script>
+  </body>
+</html>

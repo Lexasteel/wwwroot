@@ -1,0 +1,123 @@
+﻿/* * {padding:0; margin:0;} */
+html, body  
+{
+	height:100%;
+}
+
+body {font-family: Verdana, sans-serif; font-size: 12px; color:#484848; margin: 0; padding: 0; min-width: 900px; }
+
+#main {margin:0; padding:0;}
+
+#full_header {width: 100%; height: 100%; padding:0px; margin:0px; overflow:visible;}
+/*
+#main {width: 100%; height: 100%; min-height: 100%; margin:0; padding:0; display:table-row; overflow:hidden;}
+
+#footer {width: 100%; height: 50px; background: #FF7700; display:table-row; }
+*/
+
+#footer {width: 100%; height: 2.2em; clear: both; font-size: 0.9em; color: #aaa; text-align:center; padding-top: 0.4em; padding-bottom:0.4em; background:#fff; z-index:20; overflow: visible;}
+.sf-menu {z-index: 30;}
+ 
+
+h1, h2, h3, h4 { font-family: "Trebuchet MS", Verdana, sans-serif;}
+h1 {margin:0; padding:0; font-size: 24px;}
+h2, .wiki h1 {font-size: 20px;padding: 2px 10px 1px 0px;margin: 0 0 10px 0; border-bottom: 1px solid #bbbbbb; color: #444;}
+h3, .wiki h2 {font-size: 16px;padding: 2px 10px 1px 0px;margin: 0 0 10px 0; border-bottom: 1px solid #bbbbbb; color: #444;}
+h4, .wiki h3 {font-size: 13px;padding: 2px 10px 1px 0px;margin-bottom: 5px; border-bottom: 1px dotted #bbbbbb; color: #444;}
+
+
+/***** Layout *****/
+#wrapper {background: white; width:100%; height: 100%; /*display:table;*/}
+
+
+#top-menu
+{
+	background-color: #3AA4CB;
+	color: #fff;
+	height: 1.8em;
+	font-size: 1em;
+	padding: 2px 2px 0px 6px;
+    overflow:visible;
+}
+#top-menu ul {margin: 0;  padding: 0;}
+#top-menu li {
+  float:left;
+  list-style-type:none;
+  margin: 0px 0px 0px 0px;
+  padding: 0px 0px 0px 0px;
+  white-space:nowrap;
+}
+#top-menu a {color: #fff; margin-right: 8px; font-weight: bold; }
+#top-menu a:hover {text-decoration: underline;}
+
+
+#top-menu #loggedas { float: right; margin-right: 0.5em; color: #fff; }
+
+#account {float:right;}
+
+#header {margin:0;background: #507AAA; color: #f8f8f8; padding: 4px 8px 4px 6px; position:relative;}
+#header a {color:#f8f8f8;}
+#header h1 a.ancestor { font-size: 80%; }
+
+
+#main {background-color:White;}
+
+/***** Links *****/
+a {
+    color: #0099CC;
+    text-decoration: none;
+}
+a:hover {
+    color: #00CCFF;
+}
+
+a img{ border: 0; }
+
+/***** Media print specific styles *****/
+@media print {
+  #top-menu, #header, #main-menu, #sidebar, #footer, .contextual, .other-formats { display:none; }
+  #main { background: #fff; }
+  #content { width: 99%; margin: 0; padding: 0; border: 0; background: #fff; overflow: visible !important;}
+    #wiki_add_attachment { display:none; }
+  .hide-when-print { display: none; }
+    .autoscroll {overflow-x: visible;}
+    table.list {margin-top:0.5em;}
+    table.list th, table.list td {border: 1px solid #aaa;}
+}
+
+#accountTable
+{
+    width:100%;
+    margin-top:1em; 
+    border-style:solid; 
+    border-width:2px; 
+    border-color:#2E6E9E;
+    border-collapse:collapse;   
+}
+
+#accountTable-thead td
+{
+    margin:0px;
+        
+    border-top:0px;
+    border-bottom:0px;
+    border-left:2px;
+    border-right:0px;
+    
+    border-color:#2E6E9E; 
+    border-style:solid;    
+}
+
+#accountTable td
+{
+    margin:0px;
+    padding:3px;
+        
+    border-top:0px;
+    border-bottom:0px;
+    border-left:2px;
+    border-right:0px;
+    
+    border-color:#2E6E9E; 
+    border-style:solid;    
+}

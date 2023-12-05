@@ -1,0 +1,213 @@
+﻿<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Отчет</title>
+	
+    <link href="/Content/style.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/jquery-ui.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery-ui.datepicker-ru.js" type="text/javascript"></script>
+    <script src="/Scripts/custom/reports.js" type="text/javascript"></script>
+    <script src="/Scripts/custom/reports-auto.js" type="text/javascript"></script><!--тот самый скрипт, который динамически заполняет fieldList из базы данных
+                                                                                        Если нужно заполнить спмсок вручную, убрать эту строку--> 
+
+    <form method="get" action="daily.report.html">
+ <!---------------------------------------------------------------------------------------------------->
+	<input type="hidden" name="uid" id="uid" value="E125OLD-585" /> 
+    <input type="hidden" name="from_str" id="from_str" value="E125_DAILYV2" />
+    <input type="hidden" name="where_str" id="where_str" value="DEVICE_UID='E125OLD-585' AND ADDITIONAL_FLAG=0" />
+	<input type="hidden" name="report_ch" id="report_ch" value="1" />
+	<input type="hidden" name="unit" id="unit" value="сутки" />
+	<input type="hidden" name="conn" id="conn" value="Обратный поток" />
+	<input type="hidden" name="report_type" id="report_type" value="суточный" />
+	<input type="hidden" name="column_title" id="column_title" value="" />
+<!---------------------------------------------------------------------------------------------------->
+<script type="text/javascript">
+    function SetFields(ReportType) {
+        var form = $("form");
+
+        switch (ReportType.value) {
+            case 'daily':
+                form.attr("action", 'daily.report.html');
+                break;
+            case 'hourly':
+                form.attr("action", 'hourly.report.html');
+                break;
+            case 'minute':
+                form.attr("action", 'minute.report.html');
+                break;
+            default:
+                break;
+        }
+    }
+</script>
+	<br />
+	Дискретизация отчета:
+            <select id="unitSelect" name="unitSelect" style="min-width: 150px;" onchange="SetFields(this)">			
+				<option value="daily">сутки</option>
+                <!--<option value="hourly">час</option>                -->
+			<!--	<option value="minute">минутный</option>                -->
+            </select>
+    <br />
+<!--
+    <fieldset id="ShowTypeContainer" style="width: 200px; border-style: none">
+        <legend>Тип результата:</legend>
+        <input type="radio" name="showtype" value="report" checked="checked" />
+        Отчет
+        <br />
+        <input type="radio" name="showtype" value="plot" />
+        График
+    </fieldset>
+-->    
+    	
+    <div id="d_report" style="width: auto; height: 50px">
+        <div id="fldDiv">
+            Величина для построения графика
+            <select id="fieldsList" name="fieldsList" style="min-width: 150px;">			
+            <!--Здесь задается список полей, по которым можно построить график-->
+            </select>
+        </div>
+    </div>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">
+                    Интервал дат для формирования протокола
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input type="radio" value="0" name="PeriodType" checked="checked" />
+                    с
+                </td>
+                <td>
+					<input type="text" value="11.04.2011" size="10" name="StartPeriod" maxlength="10" class="dtPicker" id="StartPeriod" />
+                </td>
+                <td>
+                    по
+                    <input type="text" value="11.04.2011" size="10" name="EndPeriod" maxlength="10" class="dtPicker" id="EndPeriod" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" value="1" name="PeriodType" />
+                    за 1 день
+                </td>
+                <td>
+                    <input type="text" value="11.04.2011" size="10" name="OneDay" maxlength="10" class="dtPicker" id="OneDay" />
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" value="2" name="PeriodType" />
+                    за месяц
+                </td>
+                <td>
+                    <select name="MY_Month" id="MY_Month">
+                        <option value="1">Январь</option>
+                        <option value="2">Февраль</option>
+                        <option value="3">Март</option>
+                        <option value="4">Апрель</option>
+                        <option value="5">Май</option>
+                        <option value="6">Июнь</option>
+                        <option value="7">Июль</option>
+                        <option value="8">Август</option>
+                        <option value="9">Сентябрь</option>
+                        <option value="10">Октябрь</option>
+                        <option value="11">Ноябрь</option>
+                        <option value="12">Декабрь</option>
+                    </select>
+                </td>
+                <td>
+                    год
+                    <select name="MY_Year" id="MY_Year">
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" value="3" name="PeriodType" />
+                    за квартал
+                </td>
+                <td>
+                    <select name="QY_Quartal" id="QY_Quartal">
+                        <option value="1">1-й квартал</option>
+                        <option value="2">2-й квартал</option>
+                        <option value="3">3-й квартал</option>
+                        <option value="4">4-й квартал</option>
+                    </select>
+                </td>
+                <td>
+                    год
+                    <select name="QY_Year" id="QY_Year">
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" value="4" name="PeriodType" />
+                    за год
+                </td>
+                <td>
+                    <select name="Year" id="Year">
+                        <option value="2010">2010</option>
+                        <option value="2011">2011</option>
+                        <option value="2012">2012</option>
+                        <option value="2013">2013</option>
+                        <option value="2014">2014</option>
+                        <option value="2015">2015</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                    </select>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        <input id="b_report" type="submit" name="view" value="Посмотреть отчет" />
+        <input id="b_plot" type="submit" name="plot" value="Посмотреть график" />
+    </p>
+    </form>
+	<script type="text/javascript">
+	    showHideControls(1);
+	</script>
+</body>
+</html>

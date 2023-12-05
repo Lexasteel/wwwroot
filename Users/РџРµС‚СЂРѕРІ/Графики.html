@@ -1,0 +1,290 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8;" />
+	<title>		
+		Конструктор графиков
+	</title>
+	<!-- stylesheets -->
+
+	<link href="/Content/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<link href="/Content/superfish.css" rel="stylesheet" type="text/css" />
+	<link href="/Content/inside_style.css" rel="stylesheet" type="text/css" />
+	<link href="/Content/filemanager.css" rel="stylesheet" type="text/css" />
+	<link href="/Content/layout-default-latest.css" rel="stylesheet" type="text/css" />
+
+	<!-- jQuery & jQuery UI & Superfish plugin -->
+
+	<script src="/Scripts/jquery.min.js" type="text/javascript"></script>
+	<script src="/Scripts/jquery.cookie.js" type="text/javascript"></script>
+	<script src="/Scripts/jquery-ui.min.js" type="text/javascript"></script>
+	<script src="/Scripts/jquery-ui.datepicker-ru.js" type="text/javascript"></script>
+	<script src="/Scripts/jquery.layout.min.js" type="text/javascript"></script>
+	<script src="/Scripts/superfish.js" type="text/javascript"></script>
+	<script src="/Scripts/extensions.js" type="text/javascript"></script>
+
+	<!-- Microsoft Ajax -->
+
+	<script src="/Scripts/MicrosoftAjax.js" type="text/javascript"></script>
+
+	<script src="/Scripts/MicrosoftMvcAjax.js" type="text/javascript"></script>
+
+	<!-- Sliding effect -->
+	<!-- <script src="/Scripts/slide.js" type="text/javascript"></script> -->
+	<!-- Initialize main menu (Superfish) -->
+	<!-- Initialize buttons (jQuery UI) -->
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$(".button").button();
+			$('ul.sf-menu').superfish();
+			$("#wrapper").layout({
+				south__resizable: false,
+				south__closable: false,
+				north__resizable: false,
+				north__closable: false,
+				south__spacing_open: 0,
+				north__spacing_open: 0			
+			});
+	});
+	</script>
+
+	
+    <style type="text/css">
+        .fullsize {width:100%;height:100%;padding:0;margin:0;}
+    </style>
+    <script type="text/javascript">
+    	$(document).ready(function() 
+	{
+    		$('#plotWindow').layout({ south__size: (window.innerHeight - 40) / 2, south__initClosed: true });
+    	});
+    </script>  
+
+    <script type="text/javascript" src="/Scripts/flot/jquery.flot.min.js"></script> 
+    <script type="text/javascript" src="/Scripts/flot/jquery.flot.navigate.min.js"></script> 
+    <script type="text/javascript" src="/Scripts/flot/jquery.flot.resize.min.js"></script> 
+    <script type="text/javascript" src="/Scripts/colorpicker.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.watermark.input.min.js"></script>
+    <script type="text/javascript" src="/Scripts/knockout-1.2.1.js"></script> 
+    <script type="text/javascript" src="/Scripts/knockout.ondemandobservable.js"></script>
+    <script type="text/javascript" src="/Scripts/models/constants.js"></script>
+    <script type="text/javascript" src="/Scripts/models/group.js"></script>
+    <script type="text/javascript" src="/Scripts/models/device.js"></script>
+    <script type="text/javascript" src="/Scripts/models/channel.js"></script>
+    <script type="text/javascript" src="/Scripts/models/parameter.js"></script>
+    <script type="text/javascript" src="/Scripts/models/archivetype.js"></script>
+    <script type="text/javascript" src="/Scripts/models/plotseries.js"></script>
+    <script type="text/javascript" src="/Scripts/viewmodels/plotmodel.js"></script>
+    <script type="text/javascript" src="/Scripts/viewmodels/seriesmodel.js"></script>
+    <script type="text/javascript" src="/Scripts/codebehind/plotdialog.js"></script>
+    <script type="text/javascript" src="/Scripts/codebehind/plotcontrol.js"></script>
+
+</head>
+<body>
+	<div id="wrapper">		
+	<!--	<div id="full_header" class="ui-layout-north">
+			<div id="top-menu">
+				<div id="account">
+					<ul>
+					    <li><a href="/Profile/Details">Профиль</a></li>
+					    <li><a href="/Account/LogOff">Выйти</a></li>
+					</ul>
+				</div>
+				<div id="loggedas">
+					Приветствуем, <a href="/Profile/Details">Дмитрий Эргомера</a>
+				</div>
+				<ul class="sf-menu">
+					<li><img id="header_show" src="/Content/images/fullscreen.png" style="display: none; margin-right: 5px;" alt="Развернуть"/></li>
+					<li> <a href="/Admin/Accounts">Пользователи</a> </li>
+					<li> <a href="/AdminFileManager">Управление файлами</a></li>
+					<li> <a href="/Plot">Графики</a> </li> 
+					<li> <a href="/FileManager">Мнемосхемы и отчёты</a> </li>
+					<li><a href="http://ergomera.org.ua:84">Техподдержка</a></li>    
+					<script type="text/javascript">
+					    $(document).ready(function() {
+						$("#header_show").click(function() {
+						    $("#header").show();
+						    $(this).hide();
+						    $.ajax({ url: '/Home/HeaderIsVisible/True' });
+						});
+						$("#header_hide").click(function() {
+					    $("#header").hide();
+						    $("#header_show").css("display", "block");
+						    $.ajax({ url: '/Home/HeaderIsVisible/False' });
+						});
+						 ;
+						$("#header").show();
+						 ;
+					    });
+					</script>
+				</ul>
+			</div>			
+		</div>-->
+		<div id="main" class="ui-layout-center">			
+			<div id="plotWindow" class="fullsize">
+				<div class="ui-layout-center">
+					<div id="plotControl1" >
+						<div name="plotLeft">
+							<p>
+						                <input name="plotName" type="text" data-bind="value: title, valueUpdate: 'keyup'" style="width: 250px" placeholder="Введите название графика..."/>
+						 	</p>                
+							<p>
+								<select name="queryType" style="width: 250px" data-bind="options: queryTypes, optionsText: 'title', optionsValue: 'id', optionsCaption: 'Выберите тип архива:', value: selectedQueryType"></select>
+							</p>
+							<div>
+								Ось Y1:
+								<input class="color" data-bind="value: colorY1"/>
+								<input type="button" name="add1" value="+"/>
+								<input type="button" name="remove1" value="-" data-bind="enable: y1_selected()" />
+								<select name="seriesY1" data-bind="enable: y1_series().length > 0, options: y1_series, optionsText: 'title', value: y1_selected, style: {color: y1_selected() ? y1_selected().color : 'black'}" style="width: 200px" >
+								    
+								</select>
+								<input type="button" name="edit1" value="Ред." data-bind="enable: y1_selected()"/>
+							</div>
+							<div>
+								Ось Y2:
+								<input class="color" data-bind="value: colorY2" />
+								<input type="button" name="add2" value="+"/>
+								<input type="button" name="remove2" value="-" data-bind="enable: y2_selected()"/>
+								<select name="seriesY2" data-bind="enable: y2_series().length > 0, options: y2_series, optionsText: 'title', value: y2_selected" style="width: 200px" >
+								    
+								</select>
+								<input type="button" name="edit2" value="Ред." data-bind="enable: y2_selected()"/>
+							</div>
+							<p>
+								с <input type="text" name="dateFrom" data-bind="value: dateFrom"/>
+								<br/>
+								по <input type="text" name="dateTo" data-bind="value: dateTo"/>
+							</p>
+							<p>
+								<input type="checkbox" name="showLines" data-bind="checked: showLines"/>
+								Показывать линии
+							</p>
+							<p>
+								<input type="checkbox" name="showHints" data-bind="checked: showHints"/>
+								Показывать подсказку
+							</p>
+							<p>
+								<input type="checkbox" name="zoomX" data-bind="checked: zoomX"/>
+								Масштабирование по X
+							</p>
+							<p>
+								<input type="checkbox" name="zoomY" data-bind="checked: zoomY"/>
+								Масштабирование по Y
+							</p>
+							<p>
+								<button name="applyChanges">Применить</button>
+							</p>
+						</div>
+						<div name="plotCenter">
+						    <h2 data-bind="text: title"></h2>
+						    <div class="plotContainer" style="width:98%; height:90%; top: 2%;">
+						    </div>
+						</div>
+					</div>
+				    	<script type="text/javascript">
+						var cbplotControl1 = { };
+						$(function() { cbplotControl1 = new PlotControl('#plotControl1'); });
+					</script>
+			        </div>
+        			<div class="ui-layout-south">
+            	    			<div id="plotControl2" >
+        <div name="plotLeft">
+            <p>
+                <input name="plotName" type="text" data-bind="value: title, valueUpdate: 'keyup'" style="width: 250px" placeholder="Введите название графика..."/>
+            </p>                
+            <p>
+                <select name="queryType" style="width: 250px" data-bind="options: queryTypes, optionsText: 'title', optionsValue: 'id', optionsCaption: 'Выберите тип архива:', value: selectedQueryType"></select>
+            </p>
+            <div>
+                Ось Y1:
+                <input class="color" data-bind="value: colorY1"/>
+                <input type="button" name="add1" value="+"/>
+                <input type="button" name="remove1" value="-" data-bind="enable: y1_selected()" />
+                <select name="seriesY1" data-bind="enable: y1_series().length > 0, options: y1_series, optionsText: 'title', value: y1_selected, style: {color: y1_selected() ? y1_selected().color : 'black'}" style="width: 200px" >
+                    
+                </select>
+                <input type="button" name="edit1" value="Ред." data-bind="enable: y1_selected()"/>
+            </div>
+            <div>
+                Ось Y2:
+                <input class="color" data-bind="value: colorY2" />
+                <input type="button" name="add2" value="+"/>
+                <input type="button" name="remove2" value="-" data-bind="enable: y2_selected()"/>
+                <select name="seriesY2" data-bind="enable: y2_series().length > 0, options: y2_series, optionsText: 'title', value: y2_selected" style="width: 200px" >
+                    
+                </select>
+                <input type="button" name="edit2" value="Ред." data-bind="enable: y2_selected()"/>
+            </div>
+            <p>
+                с <input type="text" name="dateFrom" data-bind="value: dateFrom"/>
+                <br/>
+                по <input type="text" name="dateTo" data-bind="value: dateTo"/>
+            </p>
+            <p>
+                <input type="checkbox" name="showLines" data-bind="checked: showLines"/>
+                Показывать линии
+            </p>
+            <p>
+                <input type="checkbox" name="showHints" data-bind="checked: showHints"/>
+                Показывать подсказку
+            </p>
+            <p>
+                <input type="checkbox" name="zoomX" data-bind="checked: zoomX"/>
+                Масштабирование по X
+            </p>
+            <p>
+                <input type="checkbox" name="zoomY" data-bind="checked: zoomY"/>
+                Масштабирование по Y
+            </p>
+            <p>
+                <button name="applyChanges">Применить</button>
+            </p>
+        </div>
+        <div name="plotCenter">
+            <h2 data-bind="text: title"></h2>
+            <div class="plotContainer" style="width:98%; height:90%; top: 2%;">
+            </div>
+        </div>
+   </div>
+
+    <script type="text/javascript">
+        var cbplotControl2 = { };
+        $(function() { cbplotControl2 = new PlotControl('#plotControl2'); });
+    </script>
+        </div>        
+    </div>
+    
+
+<div name="select-value-dialog" style="display: none;" title="Выбор величины">
+        <select name="group" class="wide" data-bind="enable: (groups() ? groups() : []).length, options: groups, optionsText: 'name', optionsValue: 'id', optionsCaption: 'Выберите группу приборов:', value: selectedGroupId, valueUpdate: 'blur'"></select>
+    <p>
+        <select name="device" class="wide" data-bind="enable: (devices() ? devices() : []).length, options: devices, optionsText: 'title', optionsValue: 'id', optionsCaption: 'Выберите прибор:', value: selectedDeviceId, valueUpdate: 'blur'"></select>
+    </p><p>
+        <select name="channels" class="wide" data-bind="enable: (channels() ? channels() : []).length, options: channels, optionsText: 'title', optionsValue: 'id', optionsCaption: 'Выберите измерительный канал:', value: selectedChannelId, valueUpdate: 'blur'"></select>
+    </p><p>
+        <select name="parameters" class="wide" data-bind="enable: (parameters() ? parameters() : []).length, options: parameters, optionsText: 'title', optionsValue: 'id', optionsCaption: 'Выберите параметр:', value: selectedParameterId, valueUpdate: 'blur'"></select>
+    </p><p>
+        <input name="name" type="text" data-bind="value: seriesName" class="wide"/>
+        <input class="color" data-bind="value: seriesColor" style="width:4em;" />
+        <input type="checkbox" data-bind="checked: isVisible" />
+    </p><p>
+        <input type="button" name="applyValue" class="button" style="width: 48%" value="Применить"/>
+        <input type="button" name="cancelValue" class="button" style="width: 48%" value="Отмена" />
+    </p>
+</div>
+
+<script type="text/javascript">
+    ko.applyBindings(seriesModel, $("div[name='select-value-dialog']")[0])
+</script>
+		</div>
+	<!--	
+		<div id="footer" class="ui-layout-south">
+			&copy; 2011, <a href="http://www.ergomera.dp.ua">ИИС Эргомера</a>, версия
+			1.1234.0.0. Все права защищены.
+		
+        </div>
+-->
+	</div>
+</body>
+</html>

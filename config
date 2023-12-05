@@ -1,0 +1,7 @@
+﻿<organization>Кураховская ТЭС</organization>
+<os>windows</os>
+<db_main>localhost:ergomera_main</db_main>
+<db_current>localhost:ergomera_current</db_current>
+<username>SYSDBA</username>
+<password>masterkey</password>
+<charset>win1251</charset>
